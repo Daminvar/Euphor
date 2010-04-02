@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+
 namespace Euphor
 {
     /// <summary>
@@ -21,10 +22,12 @@ namespace Euphor
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Map map;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
         }
 
         /// <summary>
@@ -36,6 +39,20 @@ namespace Euphor
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            var dialog = new System.Windows.Forms.OpenFileDialog();
+
+            dialog.Filter = "Map file|*.js";
+            
+            var result = dialog.ShowDialog();
+            
+            if (result != System.Windows.Forms.DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            
+            map = new Map(this);
+            map.setMapFolder(dialog.FileName.Replace(dialog.SafeFileName, ""));
+            map.LoadMap(dialog.SafeFileName);
 
             base.Initialize();
         }
@@ -48,6 +65,7 @@ namespace Euphor
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -72,6 +90,27 @@ namespace Euphor
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            KeyboardState keyboard = Keyboard.GetState();
+
+            
+            if (keyboard.IsKeyDown(Keys.Left))
+                map.ChangeMap(Map.Directions.West);
+            
+            else if(keyboard.IsKeyDown(Keys.Right))
+                map.ChangeMap(Map.Directions.East);
+            
+            else if(keyboard.IsKeyDown(Keys.Up))
+                map.ChangeMap(Map.Directions.North);
+
+            else if(keyboard.IsKeyDown(Keys.Down))
+                map.ChangeMap(Map.Directions.South);
+            
+
+
+
+            
+
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -84,7 +123,10 @@ namespace Euphor
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            map.DrawBase(spriteBatch, 0, 0);
+            map.DrawTop(spriteBatch, 0, 0);
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
