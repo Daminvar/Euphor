@@ -147,7 +147,9 @@ namespace Euphor
         private void dialogue(string text)
         {
             //StateManager.PushState(new Dialogue(game, text));
-            Console.WriteLine(text);
+            System.Windows.Forms.MessageBox.Show(text);
+
+            
         }
 
         private void parseTMXFile()

@@ -28,6 +28,9 @@ namespace Euphor
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 480;
+
         }
 
         /// <summary>
@@ -54,10 +57,11 @@ namespace Euphor
             map = new Map(this);
             map.setMapFolder(dialog.FileName.Replace(dialog.SafeFileName, ""));
             map.LoadMap(dialog.SafeFileName);
-            new Layout(map).Show();
             
-           
+            new Layout(map).Show();
 
+
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -108,15 +112,21 @@ namespace Euphor
 
             else if(keyboard.IsKeyDown(Keys.Down))
                 map.ChangeMap(Map.Directions.South);
-            
 
+            MouseState state = Mouse.GetState();
 
+            if (state.LeftButton == ButtonState.Pressed)
+            {
 
-            
+                int mouseX = state.X / map.TileSize;
+                int mouseY = state.Y / map.TileSize;
 
-
+                NPE npe = map.GetNPEAt(mouseX, mouseY);
+                if (npe != null)
+                    npe.Interact();
+            }
             // TODO: Add your update logic here
-
+            
             base.Update(gameTime);
         }
 
@@ -127,6 +137,7 @@ namespace Euphor
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            
             spriteBatch.Begin();
             map.DrawBase(spriteBatch, 0, 0);
             map.DrawTop(spriteBatch, 0, 0);

@@ -15,6 +15,7 @@ namespace Euphor
         public Layout(Map map)
         {
             this.map = map;
+            
             InitializeComponent();
             
         }
@@ -24,7 +25,7 @@ namespace Euphor
 
             if (textBox1.Text == "")
                 return;
-
+            
             
             FlagControl fg = new FlagControl(map);
             Flags.SetFlag(textBox1.Text);

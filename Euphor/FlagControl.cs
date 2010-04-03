@@ -45,6 +45,7 @@ namespace Euphor
         {
             Parent.Controls.Remove(this);
             Flags.UnSetflag(label1.Text);
+
             map.reloadMap();
         }
     }
