@@ -18,13 +18,17 @@ namespace Euphor
             
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Constructor to set the current map
+        /// </summary>
+        /// <param name="map">map object to set to current map</param>
         public FlagControl(Map map)
         {
             this.map = map;
             InitializeComponent();
         }
 
+        //property for flag
         public string Flag
         {
             get { return label1.Text; }
@@ -41,6 +45,8 @@ namespace Euphor
 
         }
 
+        //Resets the flag back to its starting location with starting dialogue
+        //Then redraws the map to show the change
         private void button1_Click(object sender, EventArgs e)
         {
             Parent.Controls.Remove(this);

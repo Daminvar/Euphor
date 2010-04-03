@@ -27,7 +27,7 @@ namespace Euphor
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
+            //Cuts off all the blue edges around the game
             graphics.PreferredBackBufferWidth = 640;
             graphics.PreferredBackBufferHeight = 480;
 
@@ -54,13 +54,15 @@ namespace Euphor
                 Environment.Exit(0);
             }
             
+            
             map = new Map(this);
             map.setMapFolder(dialog.FileName.Replace(dialog.SafeFileName, ""));
             map.LoadMap(dialog.SafeFileName);
             
+            //shows the windows.forms layout design
             new Layout(map).Show();
 
-
+            //allows the mouse to show over the game
             this.IsMouseVisible = true;
             base.Initialize();
         }
@@ -115,6 +117,8 @@ namespace Euphor
 
             MouseState state = Mouse.GetState();
 
+            //Checks for current mouse position
+            //if the mouse clicks an NPE, will display text
             if (state.LeftButton == ButtonState.Pressed)
             {
 

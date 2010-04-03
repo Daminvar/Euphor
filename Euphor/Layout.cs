@@ -19,7 +19,12 @@ namespace Euphor
             InitializeComponent();
             
         }
-
+        /// <summary>
+        /// Adds a flag to the list, name of flag is equal to the entered text
+        /// from textbox1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
 

@@ -147,9 +147,9 @@ namespace Euphor
         private void dialogue(string text)
         {
             //StateManager.PushState(new Dialogue(game, text));
+            //will show the text in a message box
             System.Windows.Forms.MessageBox.Show(text);
-
-            
+ 
         }
 
         private void parseTMXFile()
@@ -316,6 +316,7 @@ namespace Euphor
             mapDirectory = map;
         }
 
+        //Redraws the map.
         public void reloadMap()
         {          
             parseScriptFile(scriptfile);

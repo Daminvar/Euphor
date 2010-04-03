@@ -24,10 +24,13 @@ namespace Euphor
             }
         }
 
+        //The next two methods will add/remove a flag state, 
+        //by setting the GetFlag method to true/false.
         public static void SetFlag(string flagName)
         {
             flags[flagName] = true;
         }
+        
         public static void UnSetflag(string flagName)
         {
             flags[flagName] = false;
