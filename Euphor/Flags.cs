@@ -28,5 +28,9 @@ namespace Euphor
         {
             flags[flagName] = true;
         }
+        public static void UnSetflag(string flagName)
+        {
+            flags[flagName] = false;
+        }
     }
 }

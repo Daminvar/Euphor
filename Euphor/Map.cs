@@ -16,11 +16,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace Euphor
 {
-    class Map
+    public class Map
     {
         private string mapDirectory = "";
         private const string TILESET_RESOURCE_NAME = "tileset";
-
+        private string scriptfile;
         private Game game;
         private List<int[][]> baseLayers;
         private List<int[][]> topLayers;
@@ -66,6 +66,7 @@ namespace Euphor
         /// <param name="filename">The filename</param>
         public void LoadMap(string filename)
         {
+            scriptfile = filename;
             parseScriptFile(filename);
             parseTMXFile();
         }
@@ -221,6 +222,8 @@ namespace Euphor
             {
                 parseScriptFile(filename);
                 parseTMXFile();
+                scriptfile = filename;
+
             }
         }
 
@@ -287,7 +290,6 @@ namespace Euphor
             }
             return null;
         }
-
         /// <summary>
         /// Tests to see if there is a collision
         /// at the specified coordinates.
@@ -311,5 +313,12 @@ namespace Euphor
         {
             mapDirectory = map;
         }
+
+        public void reloadMap()
+        {          
+            parseScriptFile(scriptfile);
+            parseTMXFile();       
+        }
+
     }
 }

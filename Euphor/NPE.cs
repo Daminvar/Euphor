@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace Euphor
 {
-    class NPE : IOverworldEntity
+   public class NPE : IOverworldEntity
     {
         private Action interactFunc;
         private Texture2D texture;

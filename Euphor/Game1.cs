@@ -39,6 +39,7 @@ namespace Euphor
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            
             var dialog = new System.Windows.Forms.OpenFileDialog();
 
             dialog.Filter = "Map file|*.js";
@@ -53,6 +54,9 @@ namespace Euphor
             map = new Map(this);
             map.setMapFolder(dialog.FileName.Replace(dialog.SafeFileName, ""));
             map.LoadMap(dialog.SafeFileName);
+            new Layout(map).Show();
+            
+           
 
             base.Initialize();
         }
