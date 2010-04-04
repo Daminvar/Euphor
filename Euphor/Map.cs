@@ -86,6 +86,7 @@ namespace Euphor
             var engine = new Jint.JintEngine();
             engine.DisableSecurity();
             engine.SetDebugMode(true);
+            engine.SetFunction("name",new Action<string>(setMapName));
             engine.SetFunction("east", new Action<string>(setEastMapfile));
             engine.SetFunction("west", new Action<string>(setWestMapfile));
             engine.SetFunction("north", new Action<string>(setNorthMapfile));
@@ -97,6 +98,12 @@ namespace Euphor
             engine.SetFunction("setFlag", new Action<string>(setFlag));
             engine.SetFunction("dialogue", new Action<string>(dialogue));
             engine.Run(File.ReadAllText(mapDirectory + filename));
+            
+        }
+
+        private void setMapName(string mapName)
+        {
+
         }
 
         private void setEastMapfile(string filename)

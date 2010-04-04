@@ -48,11 +48,13 @@
             // 
             // button1
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.AutoEllipsis = true;
-            this.button1.Location = new System.Drawing.Point(137, 59);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.AutoSize = true;
+            this.button1.Location = new System.Drawing.Point(153, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 31);
+            this.button1.Size = new System.Drawing.Size(32, 38);
             this.button1.TabIndex = 1;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = true;
@@ -63,11 +65,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSize = true;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "FlagControl";
-            this.Size = new System.Drawing.Size(180, 150);
+            this.Size = new System.Drawing.Size(188, 46);
             this.Load += new System.EventHandler(this.FlagControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

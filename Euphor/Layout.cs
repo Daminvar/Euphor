@@ -27,11 +27,9 @@ namespace Euphor
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-
             if (textBox1.Text == "")
                 return;
-            
-            
+
             FlagControl fg = new FlagControl(map);
             Flags.SetFlag(textBox1.Text);
             fg.Flag = textBox1.Text;
