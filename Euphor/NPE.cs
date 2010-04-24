@@ -16,7 +16,7 @@ namespace Euphor
 {
    public class NPE : IOverworldEntity
     {
-        private Action interactFunc;
+        private Action<object> interactFunc;
         private Texture2D texture;
         private int xPos, yPos;
         private Game game;
@@ -53,14 +53,14 @@ namespace Euphor
             texture = game.Content.Load<Texture2D>(textureName);
         }
 
-        public void SetInteractFunc(Action func)
+        public void SetInteractFunc(Action<object> func)
         {
             interactFunc = func;
         }
 
-        public void Interact()
+        public void Interact(object obj)
         {
-            interactFunc();
+            interactFunc(obj);
         }
     }
 }

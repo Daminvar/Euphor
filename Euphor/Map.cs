@@ -18,6 +18,10 @@ namespace Euphor
 {
     public class Map
     {
+        private delegate object NewEnemyDelegate(string textureName, string enemyName, double health,
+            double attack, double defense, double speed, double exp, object items);
+        private delegate object NewItemDelegate(string name, string description, double healthBonus, double manaBonus, double cost);
+
         private string mapDirectory = "";
         private const string TILESET_RESOURCE_NAME = "tileset";
         private string scriptfile;
@@ -97,13 +101,40 @@ namespace Euphor
             engine.SetFunction("getFlag", new Func<string, bool>(getFlag));
             engine.SetFunction("setFlag", new Action<string>(setFlag));
             engine.SetFunction("dialogue", new Action<string>(dialogue));
+            engine.SetFunction("battleTexture", new Action<string>(setBattleTexture));
+            engine.SetFunction("newEnemy", new NewEnemyDelegate(js_newEnemy));
+            engine.SetFunction("addRandomEncounter", new Action<object>(addRandomEncounter));
+            engine.SetFunction("battle", new Action<object, object>(battle));
+            engine.SetFunction("reloadMap", new Action(reloadMap));
+            engine.SetFunction("store", new Action<object, object>(store));
+            engine.SetFunction("newItem", new NewItemDelegate(js_newItem));
+            engine.SetFunction("save", new Action<object>(save));
             engine.Run(File.ReadAllText(mapDirectory + filename));
-            
+        }
+
+        private void save(object player)
+        {
+        }
+
+        private void store(object player, object items)
+        {
+            System.Windows.Forms.MessageBox.Show("Store here.");
+        }
+
+        private void battle(object player, object enemy)
+        {
         }
 
         private void setMapName(string mapName)
         {
+        }
 
+        private void addRandomEncounter(object obj)
+        {
+        }
+
+        private void setBattleTexture(string tex)
+        {
         }
 
         private void setEastMapfile(string filename)
@@ -157,6 +188,17 @@ namespace Euphor
             //will show the text in a message box
             System.Windows.Forms.MessageBox.Show(text);
  
+        }
+
+        private object js_newEnemy(string textureName, string enemyName, double health,
+            double attack, double defense, double speed, double exp, object items)
+        {
+            return new object();
+        }
+
+        private object js_newItem(string itemName, string description, double healthBonus, double manaBonus, double cost)
+        {
+            return new object();
         }
 
         private void parseTMXFile()

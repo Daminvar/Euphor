@@ -127,7 +127,7 @@ namespace Euphor
 
                 NPE npe = map.GetNPEAt(mouseX, mouseY);
                 if (npe != null)
-                    npe.Interact();
+                    npe.Interact(new object());
             }
             // TODO: Add your update logic here
             
