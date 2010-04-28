@@ -21,6 +21,7 @@ namespace Euphor
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        bool canPressKey = false;
 
         Map map;
         public Game1()
@@ -102,18 +103,33 @@ namespace Euphor
 
             KeyboardState keyboard = Keyboard.GetState();
 
-            
-            if (keyboard.IsKeyDown(Keys.Left))
-                map.ChangeMap(Map.Directions.West);
-            
-            else if(keyboard.IsKeyDown(Keys.Right))
-                map.ChangeMap(Map.Directions.East);
-            
-            else if(keyboard.IsKeyDown(Keys.Up))
-                map.ChangeMap(Map.Directions.North);
+            if (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right)
+                && keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down))
+                canPressKey = true;
 
-            else if(keyboard.IsKeyDown(Keys.Down))
-                map.ChangeMap(Map.Directions.South);
+            if (canPressKey)
+            {
+                if (keyboard.IsKeyDown(Keys.Left))
+                {
+                    map.ChangeMap(Map.Directions.West);
+                    canPressKey = false;
+                }
+                else if (keyboard.IsKeyDown(Keys.Right))
+                {
+                    map.ChangeMap(Map.Directions.East);
+                    canPressKey = false;
+                }
+                else if (keyboard.IsKeyDown(Keys.Up))
+                {
+                    map.ChangeMap(Map.Directions.North);
+                    canPressKey = false;
+                }
+                else if (keyboard.IsKeyDown(Keys.Down))
+                {
+                    map.ChangeMap(Map.Directions.South);
+                    canPressKey = false;
+                }
+            }
 
             MouseState state = Mouse.GetState();
 
